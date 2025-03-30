@@ -1,6 +1,6 @@
 const statusIcon = document.createElement('img');
-statusIcon.className = 'extension-status-icon';
-statusIcon.src = chrome.runtime.getURL('icon.png');
+statusIcon.className = window.location.hostname === "chat.openai.com" ? 'extension-status-icon' : 'chat-gpt-icon';
+statusIcon.src = chrome.runtime.getURL('icon.svg');
 document.body.appendChild(statusIcon);
 
 chrome.runtime.onMessage.addListener((request) => {
@@ -8,7 +8,6 @@ chrome.runtime.onMessage.addListener((request) => {
     const audio = new Audio(chrome.runtime.getURL("notification.mp3"));
     audio.play().catch(error => console.log("Audio error:", error));
     
-    // Some visual feedback
     statusIcon.style.opacity = '1';
     setTimeout(() => statusIcon.style.opacity = '0.5', 1000);
   }
