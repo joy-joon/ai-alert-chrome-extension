@@ -5,9 +5,15 @@ const targetEndpoints = [
 
 chrome.webRequest.onCompleted.addListener(
   (details) => {
-    if (details.statusCode === 200 && targetEndpoints.some(url => details.url.includes(url))) {
-      chrome.tabs.sendMessage(details.tabId, { action: "playSound" });
+    try {
+      if (details.statusCode === 200 && 
+          targetEndpoints.some(url => details.url.includes(url))) {
+        chrome.tabs.sendMessage(details.tabId, { action: "playSound" })
+          .catch(err => console.log("Tab not found:", err));
+      }
+    } catch (error) {
+      console.error("Error handling request:", error);
     }
   },
-  { urls: ["<all_urls>"] }
+  { urls: ["https://chat.deepseek.com/*", "https://chatgpt.com/*"] } // Match host permissions
 );
