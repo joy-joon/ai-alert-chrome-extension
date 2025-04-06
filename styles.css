@@ -1,0 +1,21 @@
+.extension-status-icon {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    z-index: 9999;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .chat-gpt-icon {
+    position: fixed;
+    top: 10px;
+    right: 10rem;
+    width: 32px;
+    height: 32px;
+    z-index: 9999;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
